@@ -3,23 +3,20 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
   </div>
+<b-container  >
 
-  <div v-for="food in 10">
-    <div class="food">
-    <div class="row">
-      <div class="col-4">
-        <img v-bind:src="imgpath" alt="food1" class="rounded float-left" />
-        <h4 v-for>{{foodName}}</h4>
-        <p>{{ingredients}}</p>
-      </div>
-    </div>
 
-    </div>
-  </div>
+<b-row sm="5">
+  <div v-for="food in 15" :style="width='300px'">
 
-  <div class="content">
+      <b-col><b-img rounded v-bind:src="imgpath" alt="food1" class="rounded float-left" /></b-col>
+      <b-col><h4 style=""  v-for>{{foodName}}</h4></b-col>
+      <b-col><p style="width:300px;">{{ingredients}}</p></b-col>
 
   </div>
+  </b-row>
+
+</b-container>
 </div>
 </template>
 

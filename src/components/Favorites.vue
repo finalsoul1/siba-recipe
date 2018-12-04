@@ -1,5 +1,5 @@
 <template>
-  <div class="favorites">
+  <div id="favorites">
     <h1>즐겨찾기</h1>
     <h2>{{msg}}</h2>
   </div>
@@ -8,6 +8,9 @@
 export default {
   props: {
     msg: String
+  },
+  method: {
+    
   }
 }
 </script>
