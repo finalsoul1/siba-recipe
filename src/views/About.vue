@@ -10,9 +10,12 @@
 import Favorites from '@/components/Favorites.vue'
 
 export default {
-  name: 'home',
+  name: 'about',
   components: {
     Favorites
   }
 }
 </script>
+<style scoped>
+
+</style>
