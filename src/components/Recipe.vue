@@ -25,13 +25,7 @@
           </b-col>
         </div>
       </b-row>
-      <b-pagination-nav
-        align="center"
-        size="md"
-        :link-gen="linkGen"
-        :number-of-pages="63"
-        v-model="currentPage"
-      ></b-pagination-nav>
+      <b-pagination-nav align="center" size="md" :link-gen="linkGen" :number-of-pages="63" v-model="currentPage"/>
       <div class="mt-4">currentPage:{{currentPage}}</div>
     </b-container>
   </div>
@@ -60,10 +54,7 @@ export default {
   },
   methods: {
     linkGen(currentPage) {
-      return {
-        path: '/food/list/' + "ht"
-      },
-        axios.get(this.baseUrl, {
+      axios.get(this.baseUrl, {
           params: {
             page: currentPage
           }
@@ -74,6 +65,9 @@ export default {
           .catch(e => {
             this.errors.push(e)
           })
+      return {
+        path: '/food/list/?page=' + currentPage
+      } 
     },
     foodid(id) {
       console.log(id);

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="detailview">
 
     <RecipeDetail msg='디테일' />
   </div>
@@ -17,5 +17,9 @@ export default {
 }
 </script>
 <style scoped>
-
+.detailview {
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+}
 </style>

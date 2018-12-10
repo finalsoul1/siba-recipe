@@ -1,16 +1,9 @@
 <template>
-  <div
-    id="detail"
-    align="center"
-  >
-    <b-container>
+  <div id="detail">
+    <b-container class="recipedetail">
 
-      <b-row>
-        <b-img
-          v-bind:src="posts.food.bigImageLocation"
-          alt="food1"
-          class="rounded float-left"
-        />
+      <b-row sm="1">
+        <b-img v-bind:src="posts.food.bigImageLocation" alt="food1" class="rounded float-left"/>
       </b-row>
 
       <b-row>
@@ -20,18 +13,14 @@
       <b-row>
         <p style="width:300px;">{{posts.food.ingredients}}</p>
       </b-row>
+
       <br>
       <div class="col-md-4 col-lg4" v-for="recipes in posts.recipes" :style="width='300px'">
-
         <ul class="mb-30">
           <b-row>
-            <b-col></b-col>
-            <b-img
-              rounded
-              v-bind:src="recipes.imageLocation"
-              alt="No Photo"
-              class="rounded float-left"
-            /><br>
+            <b-col>
+            <b-img rounded v-bind:src="recipes.imageLocation" alt="No Photo" class="rounded float-left"/>
+            <br>
             </b-col>
             <b-row><br>
               <li>{{recipes.recipeDesc}}</li>
