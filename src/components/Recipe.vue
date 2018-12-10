@@ -2,27 +2,35 @@
 
   <div class="">
     <div class="hello">
-      <h1>{{ msg }}</h1>
+      <h1 class="title">{{ msg }}</h1>
+      <br>
     </div>
     <b-container>
-      <b-row sm="3">
+      <b-row >
         <div class="col-md-4 col-lg4" v-for="list in posts.list" :style="width='300px'">
           <b-col>
             <b-img
-              rounded
+
               v-bind:src="list.smallImageLocation"
               alt="food1"
-              class="rounded float-left"
+              class="mainimage"
             />
           </b-col>
+
+          <br>
+
           <b-col>
-            <a class="gotoDetail" href="#" @click.prevent="foodid(list.id)">
-              <h4>{{list.name}}</h4>
-            </a>
+          <a class="gotoDetail" href="#" @click.prevent="foodid(list.id)">
+            <h4 class="h4">{{list.name}}</h4>
+          </a>
           </b-col>
+
+          <br>
+
           <b-col>
             <p style="width:300px;">{{list.ingredients}}</p>
           </b-col>
+          <br>
         </div>
       </b-row>
       <b-pagination-nav align="center" size="md" :link-gen="linkGen" :number-of-pages="63" v-model="currentPage"/>
@@ -49,7 +57,7 @@ export default {
       posts: [],
       errors: [],
       currentPage: 1,
-      baseUrl: 'http://localhost:8080/food/list',
+      baseUrl: 'http://192.168.0.15:8080/food/list',
     }
   },
   methods: {
@@ -67,7 +75,7 @@ export default {
           })
       return {
         path: '/food/list/?page=' + currentPage
-      } 
+      }
     },
     foodid(id) {
       console.log(id);
@@ -81,4 +89,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.mainimage{
+  border-radius: 50px;
+}
+
 </style>

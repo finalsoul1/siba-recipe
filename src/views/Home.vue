@@ -1,6 +1,7 @@
 <template>
 <div class="home">
-    <Recipe msg="시바레시피" />
+    <Recipe msg="Recipe" />
+  
 
 <!-- <Recipe food/></Recipe> -->
 
