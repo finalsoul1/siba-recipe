@@ -1,36 +1,42 @@
 <template>
-  <div id="detail" align="center">
-    <b-container class="recipedetail">
 
-      <b-row sm="1">
-        <b-img center v-bind:src="posts.food.bigImageLocation" alt="food1" class="rounded float-left"/>
-      </b-row>
+<div class="detail">
+  <container class="recipedetail">
 
-      <b-row>
-        <h4>{{posts.food.name}}</h4>
-      </b-row>
+    <b-row sm="1">
+      <b-img center  v-bind:src="posts.food.bigImageLocation" alt="food1" class="big" />
+    </b-row>
 
-      <b-row>
-        <p style="width:300px;">{{posts.food.ingredients}}</p>
-      </b-row>
+    <br>
+    <br>
 
-      <br>
-      <div class="col-md-4 col-lg4" v-for="recipes in posts.recipes" :key="recipes.id" :style="width='300px'">
-        <ul class="mb-30">
-          <b-row>
-            <b-col>
-            <b-img rounded v-bind:src="recipes.imageLocation" alt="No Photo" class="rounded float-left"/>
-            <br>
-            </b-col>
-            <b-row><br>
-              <li>{{recipes.recipeDesc}}</li>
-            </b-row>
-          </b-row>
-          <hr>
-        </ul>
-      </div>
-    </b-container>
-  </div>
+    <b-row align-h="center">
+      <h4>{{posts.food.name}}</h4>
+    </b-row>
+    <br>
+    <b-row align-h="center">
+      <p style="width:470px">{{posts.food.ingredients}}</p>
+    </b-row>
+
+    <br>
+
+    <div class="" v-for="recipes in posts.recipes">
+      <ul class="list">
+
+        <b-row>
+          <b-img center v-bind:src="recipes.imageLocation" alt="조리과정사진이 없습니다." class="rounded float-left" width="500" height="300"/>
+        </b-row>
+
+        <br>
+        <b-row align-h="center">
+          <li>{{recipes.recipeDesc}}</li>
+        </b-row>
+      </ul>
+      <hr>
+    </div>
+
+  </container>
+</div>
 </template>
 <script>
 import axios from 'axios'
@@ -40,23 +46,23 @@ export default {
   data() {
     return {
       posts: {
-        food:{
+        food: {
           bigImageLocation: '',
-          ingredients:''
+          ingredients: ''
         }
       },
       errors: [],
-      baseUrl: 'http://localhost:8080/food/detail',
+      baseUrl: 'http://192.168.0.15:8080/food/detail',
     }
   },
   created() {
     console.log(this.$store.getters.getFoodid);
-    
+
     axios.get(this.baseUrl, {
-      params: {
-        foodId: this.$store.getters.getFoodid
-      }
-    })
+        params: {
+          foodId: this.$store.getters.getFoodid
+        }
+      })
       .then(response => {
         this.posts = response.data
       })
@@ -67,4 +73,7 @@ export default {
 }
 </script>
 <style scoped>
+.big{
+  border-radius: 50px
+}
 </style>
