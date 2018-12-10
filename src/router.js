@@ -13,7 +13,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/food/list/:page',
+      path: '/food/:page',
       name: 'home',
       component: Home
     },

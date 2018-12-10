@@ -3,7 +3,7 @@
     <div id="nav">
       <b-button-group>
         <b-button>
-          <router-link :to="'/food/list'">Home</router-link>
+          <router-link to="/food/list">Home</router-link>
         </b-button>
         <b-button>
           <router-link to="/about">About</router-link>

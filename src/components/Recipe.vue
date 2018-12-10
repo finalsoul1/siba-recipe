@@ -1,29 +1,40 @@
 <template>
 
-<div class="">
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="">
+    <div class="hello">
+      <h1>{{ msg }}</h1>
+    </div>
+    <b-container>
+      <b-row sm="3">
+        <div class="col-md-4 col-lg4" v-for="list in posts.list" :style="width='300px'">
+          <b-col>
+            <b-img
+              rounded
+              v-bind:src="list.smallImageLocation"
+              alt="food1"
+              class="rounded float-left"
+            />
+          </b-col>
+          <b-col>
+            <a class="gotoDetail" href="#" @click.prevent="foodid(list.id)">
+              <h4>{{list.name}}</h4>
+            </a>
+          </b-col>
+          <b-col>
+            <p style="width:300px;">{{list.ingredients}}</p>
+          </b-col>
+        </div>
+      </b-row>
+      <b-pagination-nav
+        align="center"
+        size="md"
+        :link-gen="linkGen"
+        :number-of-pages="63"
+        v-model="currentPage"
+      ></b-pagination-nav>
+      <div class="mt-4">currentPage:{{currentPage}}</div>
+    </b-container>
   </div>
-  <b-container>
-    <b-row sm="3">
-      <div class="col-md-4 col-lg4" v-for="list in posts.list" :style="width='300px'">
-        <b-col>
-          <b-img rounded v-bind:src="list.smallImageLocation" alt="food1" class="rounded float-left" />
-        </b-col>
-        <b-col>
-          <a class="gotoDetail"  href="/recipedetail" @click.prevent="foodid">
-            <h4 v-for>{{list.name}}</h4>
-          </a>
-        </b-col>
-        <b-col>
-          <p style="width:300px;">{{list.ingredients}}</p>
-        </b-col>
-      </div>
-    </b-row>
-    <b-pagination-nav  align="center" size="md" :link-gen="linkGen" :number-of-pages="63" v-model="currentPage"></b-pagination-nav>
-    <div class="mt-4">currentPage:{{currentPage}}</div>
-  </b-container>
-</div>
 </template>
 <!-- :use-router="true" -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
@@ -49,32 +60,31 @@ export default {
   },
   methods: {
     linkGen(currentPage) {
-      return{
-        path: '/food/list/'+"ht"
+      return {
+        path: '/food/list/' + "ht"
       },
-      axios.get(this.baseUrl, {
+        axios.get(this.baseUrl, {
           params: {
-            page: this.currentPage
+            page: currentPage
           }
         })
-        .then(response => {
-          this.posts = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
-      },
-      sendId: function(id) {
-        this.$emit('foodid',id);
-        console.log(id);
-      }
-      },
-
+          .then(response => {
+            this.posts = response.data
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+    },
+    foodid(id) {
+      console.log(id);
+      this.$store.commit('foodid', id)
+      this.$router.push({ name:'recipedetail' })
+    }
+  },
 
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>
