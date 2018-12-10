@@ -1,38 +1,76 @@
 <template>
+
 <div class="">
   <div class="hello">
     <h1>{{ msg }}</h1>
   </div>
-<b-container  >
-
-
-<b-row sm="5">
-  <div v-for="food in 15" :style="width='300px'">
-
-      <b-col><b-img rounded v-bind:src="imgpath" alt="food1" class="rounded float-left" /></b-col>
-      <b-col><h4 style=""  v-for>{{foodName}}</h4></b-col>
-      <b-col><p style="width:300px;">{{ingredients}}</p></b-col>
-
-  </div>
-  </b-row>
-
-</b-container>
+  <b-container>
+    <b-row sm="3">
+      <div class="col-md-4 col-lg4" v-for="list in posts.list" :style="width='300px'">
+        <b-col>
+          <b-img rounded v-bind:src="list.smallImageLocation" alt="food1" class="rounded float-left" />
+        </b-col>
+        <b-col>
+          <a class="gotoDetail"  href="/recipedetail" @click.prevent="foodid">
+            <h4 v-for>{{list.name}}</h4>
+          </a>
+        </b-col>
+        <b-col>
+          <p style="width:300px;">{{list.ingredients}}</p>
+        </b-col>
+      </div>
+    </b-row>
+    <b-pagination-nav  align="center" size="md" :link-gen="linkGen" :number-of-pages="63" v-model="currentPage"></b-pagination-nav>
+    <div class="mt-4">currentPage:{{currentPage}}</div>
+  </b-container>
 </div>
 </template>
+<!-- :use-router="true" -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 
 <script>
+import axios from 'axios'
+
+// import pagination from 'vue-bootstrap-pagination'
 export default {
+
   name: 'HelloWorld',
   props: {
     msg: String
   },
   data() {
     return {
-      imgpath: "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00017_2.png",
-      foodName: "고구마죽",
-      ingredients: "고구마죽 고구마 100g(2/3개), 설탕 2g(1/3작은술), 찹쌀가루 3g(2/3작은술),물 200ml(1컵), 잣 8g(8알)"
+      posts: [],
+      errors: [],
+      currentPage: 1,
+      baseUrl: 'http://localhost:8080/food/list',
     }
-  }
+  },
+  methods: {
+    linkGen(currentPage) {
+      return{
+        path: '/food/list/'+"ht"
+      },
+      axios.get(this.baseUrl, {
+          params: {
+            page: this.currentPage
+          }
+        })
+        .then(response => {
+          this.posts = response.data
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+      },
+      sendId: function(id) {
+        this.$emit('foodid',id);
+        console.log(id);
+      }
+      },
+
+
 }
 </script>
 

@@ -3,13 +3,16 @@
     <div id="nav">
       <b-button-group>
         <b-button>
-          <router-link to="/">Home</router-link>
+          <router-link :to="'/food/list'">Home</router-link>
         </b-button>
         <b-button>
           <router-link to="/about">About</router-link>
         </b-button>
         <b-button>
           <router-link to="/login">login</router-link>
+        </b-button>
+        <b-button>
+          <router-link to="/recipedetail">detail</router-link>
         </b-button>
       </b-button-group>
     </div>
