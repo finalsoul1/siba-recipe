@@ -6,7 +6,7 @@
     </div>
     <b-container>
       <b-row sm="3">
-        <div class="col-md-4 col-lg4" v-for="list in posts.list" :style="width='300px'">
+        <div class="col-md-4 col-lg4" v-for="list in posts.list" :key="list.id" :style="width='300px'">
           <b-col>
             <b-img
               rounded
@@ -67,7 +67,7 @@ export default {
           })
       return {
         path: '/food/list/?page=' + currentPage
-      } 
+      }
     },
     foodid(id) {
       console.log(id);

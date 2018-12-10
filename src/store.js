@@ -14,11 +14,7 @@ export const store = new Vuex.Store({
   },
   mutations: {
     foodid (state, payload) {
-      console.log(payload);
-      
       state.foodid = payload
-
-      console.log(this.state.foodid);
     }
   }
 })

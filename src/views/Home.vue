@@ -1,10 +1,10 @@
 <template>
-<div class="home">
+  <div class="home">
     <Recipe msg="시바레시피" />
 
-<!-- <Recipe food/></Recipe> -->
+    <!-- <Recipe food/></Recipe> -->
 
-</div>
+  </div>
 </template>
 
 
@@ -23,5 +23,4 @@ export default {
 }
 </script>
 <style scoped>
-
 </style>

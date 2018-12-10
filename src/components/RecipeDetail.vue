@@ -1,9 +1,9 @@
 <template>
-  <div id="detail">
+  <div id="detail" align="center">
     <b-container class="recipedetail">
 
       <b-row sm="1">
-        <b-img v-bind:src="posts.food.bigImageLocation" alt="food1" class="rounded float-left"/>
+        <b-img center v-bind:src="posts.food.bigImageLocation" alt="food1" class="rounded float-left"/>
       </b-row>
 
       <b-row>
@@ -15,7 +15,7 @@
       </b-row>
 
       <br>
-      <div class="col-md-4 col-lg4" v-for="recipes in posts.recipes" :style="width='300px'">
+      <div class="col-md-4 col-lg4" v-for="recipes in posts.recipes" :key="recipes.id" :style="width='300px'">
         <ul class="mb-30">
           <b-row>
             <b-col>
@@ -27,11 +27,8 @@
             </b-row>
           </b-row>
           <hr>
-
         </ul>
-
       </div>
-
     </b-container>
   </div>
 </template>
@@ -67,7 +64,6 @@ export default {
         this.errors.push(e)
       })
   }
-
 }
 </script>
 <style scoped>
