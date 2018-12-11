@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.yummy.mapper.FoodMapper">
+
+<resultMap id="BaseResultMap" type="app.yummy.vo.FoodVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="calorie" jdbcType="REAL" property="calorie" />
+    <result column="carbohydrate" jdbcType="REAL" property="carbohydrate" />
+    <result column="protein" jdbcType="REAL" property="protein" />
+    <result column="fat" jdbcType="REAL" property="fat" />
+    <result column="natrium" jdbcType="REAL" property="natrium" />
+    <result column="small_image_location" jdbcType="VARCHAR" property="smallImageLocation" />
+    <result column="big_image_location" jdbcType="VARCHAR" property="bigImageLocation" />
+    <result column="ingredients" jdbcType="VARCHAR" property="ingredients" />
+  </resultMap>
+  
+   <select id="selectFood"  resultMap="BaseResultMap">
+   		<bind name="start" value="@app.yummy.common.Pagination@seekStart(page, size)"/>
+    select
+       id, name, small_image_location, big_image_location, CONCAT(substring(ingredients, 1, 70), '...') as ingredients
+    from food
+    order by id asc
+  	LIMIT #{start}, #{size}
+  </select>
+  
+  <select id="selectTotalCnt" resultType="java.lang.Integer">
+  	select count(*) from food
+  </select>
+  
+  <select id="selectFoodDetail" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select id, name, 
+  			calorie, carbohydrate, protein, fat, natrium, 
+  			small_image_location, big_image_location, ingredients
+  	from food 
+  	where id = #{foodId}
+  </select>
+
+</mapper>

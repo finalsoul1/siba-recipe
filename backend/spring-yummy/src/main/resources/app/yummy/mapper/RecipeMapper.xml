@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.yummy.mapper.RecipeMapper">
+  <resultMap id="BaseResultMap" type="app.yummy.vo.RecipeVO">
+    <result column="food_id" jdbcType="INTEGER" property="foodId" />
+    <result column="recipe_desc" jdbcType="VARCHAR" property="recipeDesc" />
+    <result column="image_location" jdbcType="VARCHAR" property="imageLocation" />
+  </resultMap>
+  
+  <select id="selectRecipe" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from food_recipe where food_id = #{foodId}
+  </select>
+  
+ </mapper>
+  
