@@ -1,6 +1,6 @@
 <template>
 <div class="home">
-    <Recipe msg="Recipe" />
+    <Recipe msg="Seon hui's Recipe" />
   </div>
 </template>
 
